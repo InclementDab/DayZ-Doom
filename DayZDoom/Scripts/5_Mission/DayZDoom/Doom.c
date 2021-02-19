@@ -92,7 +92,7 @@ class Doom
 		float dt = (dir[2] + 1) / 2;
 		
 		//Print(dt);
-		//DrawLine(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH * dt, SCREEN_HEIGHT * dt, COLOR_RED);
+		DrawLine(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH * dt, SCREEN_HEIGHT * dt, COLOR_RED);
 		FillCircle(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 5, COLOR_RED);
 		
 		FillCircle(5, 5, 3, COLOR_BLUE);
@@ -200,8 +200,7 @@ class Doom
 		int p = 3 - 2 * r;
 		if (!r) return;
 
-		while (y >= x)
-		{
+		while (y >= x) {
 			// Modified to draw scan-lines instead of edges
 			_drawline(xc - x, xc + x, yc - y, c);
 			_drawline(xc - y, xc + y, yc - x, c);
