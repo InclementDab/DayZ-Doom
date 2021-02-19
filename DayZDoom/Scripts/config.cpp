@@ -1,7 +1,7 @@
 
 class CfgPatches
 {
-	class ModTemplate_Scripts
+	class DayZDoom_Scripts
 	{
         units[] = {};
         weapons[] = {};
@@ -12,15 +12,15 @@ class CfgPatches
 
 class CfgMods 
 {
-	class DZ_ModTemplate
+	class DZ_DayZDoom
 	{
 		name = "Mod Template";
-		dir = "ModTemplate";
+		dir = "DayZDoom";
 		credits = "";
 		author = "";
-		creditsJson = "ModTemplate/Scripts/Data/Credits.json";
-		versionPath = "ModTemplate/scripts/Data/Version.hpp";
-		inputs = "ModTemplate/Scripts/Data/Inputs.xml";
+		creditsJson = "DayZDoom/Scripts/Data/Credits.json";
+		versionPath = "DayZDoom/scripts/Data/Version.hpp";
+		inputs = "DayZDoom/Scripts/Data/Inputs.xml";
 		type = "mod";
 		dependencies[] =
 		{
@@ -32,7 +32,7 @@ class CfgMods
 			{
 				files[]=
 				{
-					"ModTemplate/gui/imagesets/dayz_editor_gui.imageset"
+					"DayZDoom/gui/imagesets/dayz_editor_gui.imageset"
 				};
 			};
 			class engineScriptModule
@@ -40,8 +40,8 @@ class CfgMods
 				value = "";
 				files[] =
 				{
-					"ModTemplate/scripts/common",
-					"ModTemplate/scripts/1_core"
+					"DayZDoom/scripts/common",
+					"DayZDoom/scripts/1_core"
 				};
 			};
 
@@ -50,8 +50,8 @@ class CfgMods
 				value="";
 				files[] = 
 				{
-					"ModTemplate/scripts/common",
-					"ModTemplate/scripts/3_Game"
+					"DayZDoom/scripts/common",
+					"DayZDoom/scripts/3_Game"
 				};
 			};
 			class worldScriptModule
@@ -59,8 +59,8 @@ class CfgMods
 				value="";
 				files[] = 
 				{
-					"ModTemplate/scripts/common",
-					"ModTemplate/scripts/4_World"
+					"DayZDoom/scripts/common",
+					"DayZDoom/scripts/4_World"
 				};
 			};
 
@@ -69,8 +69,8 @@ class CfgMods
 				value="";
 				files[] = 
 				{
-					"ModTemplate/scripts/common",
-					"ModTemplate/scripts/5_Mission"
+					"DayZDoom/scripts/common",
+					"DayZDoom/scripts/5_Mission"
 				};
 			};
 		};

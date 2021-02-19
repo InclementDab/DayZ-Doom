@@ -1,0 +1,11 @@
+name = "DayZDoom";
+picture = "DayZDoom/gui/images/dayz_editor_icon_black.edds";
+logo = "DayZDoom/gui/images/dayz_editor_icon_black.edds";
+logoSmall = "DayZDoom/gui/images/dayz_editor_icon_black.edds";
+logoOver = "DayZDoom/gui/images/dayz_editor_icon_black.edds";
+tooltip = "DayZDoom";
+overview = "";
+action = "";
+author = "";
+authorID = "";
+version = "";
