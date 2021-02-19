@@ -1,34 +1,7 @@
 typedef array<ref Widget> PixelArray;
 
-class Doom
-{
-	// static constructor style
-	// cause i really want to type Doom.Run(); lol
-	private static ref Doom m_Instance;
-	
-	static void Run()
-	{
-		/*if (GetGame().IsServer()) {
-			return;
-		}*/
-		
-		if (m_Instance) {
-			delete m_Instance;
-		}
-		
-		m_Instance = new Doom();	
-	}
-	
-	static void Stop()
-	{
-		delete m_Instance;
-	}
-	
-	static Doom GetInstance()
-	{
-		return m_Instance;
-	}
-	
+class PixelGameEngine
+{	
 	static const int SCREEN_WIDTH = 50;
 	static const int SCREEN_HEIGHT = 28;
 	static const int PIXEL_SIZE = 10;
@@ -38,7 +11,7 @@ class Doom
 	protected ref array<ref PixelArray> m_ScreenPixels = {};
 	protected ref Timer m_FrameTimer = new Timer(CALL_CATEGORY_SYSTEM);
 	
-	private void Doom()
+	void PixelGameEngine()
 	{
 		m_LayoutRoot = GetGame().GetWorkspace().CreateWidgets("DayZDoom/GUI/layouts/panel_display.layout");
 		for (int i = 0; i < SCREEN_WIDTH; i++) {
@@ -58,7 +31,7 @@ class Doom
 		m_FrameTimer.Run(1 / FRAMERATE, this, "OnFrame", null, true);
 	}
 	
-	void ~Doom()
+	void ~PixelGameEngine()
 	{
 		m_FrameTimer.Stop();
 		delete m_FrameTimer;
@@ -82,24 +55,19 @@ class Doom
 	
 	void OnFrame()
 	{
-		vector dir = GetGame().GetCurrentCameraDirection();		
-		
 		for (int i = 0; i < SCREEN_WIDTH; i++) {
 			for (int j = 0; j < SCREEN_HEIGHT; j++) {
 				Draw(i, j, ARGB(255, 0, 0, 0));	
 			}
 		}
-		float dt = (dir[2] + 1) / 2;
-		
-		//Print(dt);
-		DrawLine(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH * dt, SCREEN_HEIGHT * dt, COLOR_RED);
-		FillCircle(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 5, COLOR_RED);
-		
-		FillCircle(5, 5, 3, COLOR_BLUE);
 	}
 	
 	void Draw(int pixel_x, int pixel_y, int color)
 	{
+		if (pixel_x < 0 || pixel_x >= SCREEN_WIDTH || pixel_y < 0 || pixel_y >= SCREEN_HEIGHT) {
+			return;
+		}
+		
 		m_ScreenPixels[pixel_x][pixel_y].SetColor(color);
 	}
 	
@@ -217,4 +185,12 @@ class Doom
 			}
 		}
 	}
+	
+	void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, int c)
+	{
+		DrawLine(x1, y1, x2, y2, c);
+		DrawLine(x2, y2, x3, y3, c);
+		DrawLine(x3, y3, x1, y1, c);
+	}
+
 }
