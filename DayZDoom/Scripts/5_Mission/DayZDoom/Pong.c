@@ -126,11 +126,11 @@ class Pong: PixelGameEngine
 		DrawLine(SCREEN_WIDTH - 2, player_2_pos + (PADDLE_SIZE / 2), SCREEN_WIDTH - 2, player_2_pos - (PADDLE_SIZE / 2), COLOR_PONG);
 		
 		// ball
-		if (ball_x <= 1 && (ball_y <= player_1_pos + (PADDLE_SIZE / 2) && ball_y >= player_1_pos - (PADDLE_SIZE / 2))) {
+		if (ball_x <= 3 && (ball_y <= player_1_pos + (PADDLE_SIZE / 2) && ball_y >= player_1_pos - (PADDLE_SIZE / 2))) {
 			ball_vx = 0.03;
 		}
 		
-		if (ball_x >= SCREEN_WIDTH - 2 && (ball_y <= player_2_pos + (PADDLE_SIZE / 2) && ball_y >= player_2_pos - (PADDLE_SIZE / 2))) {
+		if (ball_x >= SCREEN_WIDTH - 3 && (ball_y <= player_2_pos + (PADDLE_SIZE / 2) && ball_y >= player_2_pos - (PADDLE_SIZE / 2))) {
 			ball_vx = -0.03;
 		}
 		
