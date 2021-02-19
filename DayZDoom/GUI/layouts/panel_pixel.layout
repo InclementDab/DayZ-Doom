@@ -1,10 +1,9 @@
 PanelWidgetClass rootFrame {
- size 350 250
- halign center_ref
- valign center_ref
+ position 0 0
+ size 10 10
  hexactpos 1
  vexactpos 1
  hexactsize 1
  vexactsize 1
- style rover_sim_blackbox
+ style rover_sim_colorable
 }
