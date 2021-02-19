@@ -30,7 +30,7 @@ class Doom
 	}
 	
 	static const int SCREEN_WIDTH = 50;
-	static const int SCREEN_HEIGHT = 20;
+	static const int SCREEN_HEIGHT = 28;
 	static const int PIXEL_SIZE = 10;
 	static const int FRAMERATE = 20;
 	

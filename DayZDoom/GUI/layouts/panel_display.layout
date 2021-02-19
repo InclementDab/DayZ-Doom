@@ -1,5 +1,5 @@
 PanelWidgetClass rootFrame {
- size 350 250
+ size 500 280
  halign center_ref
  valign center_ref
  hexactpos 1
