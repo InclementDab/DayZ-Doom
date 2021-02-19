@@ -40,7 +40,6 @@ class Doom
 	
 	private void Doom()
 	{
-		typename pixels = PixelArray;
 		m_LayoutRoot = GetGame().GetWorkspace().CreateWidgets("DayZDoom/GUI/layouts/panel_display.layout");
 		for (int i = 0; i < SCREEN_WIDTH; i++) {
 			if (!m_ScreenPixels[i]) {
@@ -88,7 +87,7 @@ class Doom
 		float dir1 = dir[1];
 		for (int i = 0; i < SCREEN_WIDTH; i++) {
 			for (int j = 0; j < SCREEN_HEIGHT; j++) {
-				SetPixelColor(i, j, ARGB(1, 1, dir1, 1));	
+				SetPixelColor(i, j, ARGB(255, dir[0] * 255, dir[1] * 255, 255));	
 			}
 		}
 	}
