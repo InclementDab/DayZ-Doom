@@ -82,18 +82,74 @@ class Doom
 	
 	void OnFrame()
 	{
-		vector dir = GetGame().GetCurrentCameraDirection();
-		dir.Normalize();
-		float dir1 = dir[1];
+		vector dir = GetGame().GetCurrentCameraDirection();		
+		
 		for (int i = 0; i < SCREEN_WIDTH; i++) {
 			for (int j = 0; j < SCREEN_HEIGHT; j++) {
-				SetPixelColor(i, j, ARGB(255, dir[0] * 255, dir[1] * 255, 255));	
+				Draw(i, j, ARGB(255, 255, 255, 255));	
 			}
 		}
+		float dt = (dir[2] + 1) / 2;
+		
+		Print(dt);
+		DrawLine(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH * dt, SCREEN_HEIGHT * dt, COLOR_RED);
 	}
 	
-	void SetPixelColor(int pixel_x, int pixel_y, int color)
+	void Draw(int pixel_x, int pixel_y, int color)
 	{
 		m_ScreenPixels[pixel_x][pixel_y].SetColor(color);
+	}
+	
+	// I stole this code, unapologetically
+	void DrawLine(int x1, int y1, int x2, int y2, int c)
+	{
+		int x, y, dx, dy, dx1, dy1, px, py, xe, ye, i;
+		dx = x2 - x1; dy = y2 - y1;
+		dx1 = Math.AbsInt(dx); dy1 = Math.AbsInt(dy);
+		px = 2 * dy1 - dx1;	py = 2 * dx1 - dy1;
+		if (dy1 <= dx1)
+		{
+			if (dx >= 0)
+				{ x = x1; y = y1; xe = x2; }
+			else
+				{ x = x2; y = y2; xe = x1;}
+
+			Draw(x, y, c);
+			
+			for (i = 0; x<xe; i++)
+			{
+				x = x + 1;
+				if (px<0)
+					px = px + 2 * dy1;
+				else
+				{
+					if ((dx<0 && dy<0) || (dx>0 && dy>0)) y = y + 1; else y = y - 1;
+					px = px + 2 * (dy1 - dx1);
+				}
+				Draw(x, y, c);
+			}
+		}
+		else
+		{
+			if (dy >= 0)
+				{ x = x1; y = y1; ye = y2; }
+			else
+				{ x = x2; y = y2; ye = y1; }
+
+			Draw(x, y, c);
+
+			for (i = 0; y<ye; i++)
+			{
+				y = y + 1;
+				if (py <= 0)
+					py = py + 2 * dx1;
+				else
+				{
+					if ((dx<0 && dy<0) || (dx>0 && dy>0)) x = x + 1; else x = x - 1;
+					py = py + 2 * (dx1 - dy1);
+				}
+				Draw(x, y, c);
+			}
+		}
 	}
 }
