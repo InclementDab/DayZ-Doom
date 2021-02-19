@@ -86,13 +86,16 @@ class Doom
 		
 		for (int i = 0; i < SCREEN_WIDTH; i++) {
 			for (int j = 0; j < SCREEN_HEIGHT; j++) {
-				Draw(i, j, ARGB(255, 255, 255, 255));	
+				Draw(i, j, ARGB(255, 0, 0, 0));	
 			}
 		}
 		float dt = (dir[2] + 1) / 2;
 		
-		Print(dt);
-		DrawLine(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH * dt, SCREEN_HEIGHT * dt, COLOR_RED);
+		//Print(dt);
+		//DrawLine(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH * dt, SCREEN_HEIGHT * dt, COLOR_RED);
+		FillCircle(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 5, COLOR_RED);
+		
+		FillCircle(5, 5, 3, COLOR_BLUE);
 	}
 	
 	void Draw(int pixel_x, int pixel_y, int color)
@@ -149,6 +152,69 @@ class Doom
 					py = py + 2 * (dx1 - dy1);
 				}
 				Draw(x, y, c);
+			}
+		}
+	}
+	
+	
+	void DrawCircle(int xc, int yc, int r, int c)
+	{
+		int x = 0;
+		int y = r;
+		int p = 3 - 2 * r;
+		if (!r) return;
+
+		while (y >= x) // only formulate 1/8 of circle
+		{
+			Draw(xc - x, yc - y, c);//upper left left
+			Draw(xc - y, yc - x, c);//upper upper left
+			Draw(xc + y, yc - x, c);//upper upper right
+			Draw(xc + x, yc - y, c);//upper right right
+			Draw(xc - x, yc + y, c);//lower left left
+			Draw(xc - y, yc + x, c);//lower lower left
+			Draw(xc + y, yc + x, c);//lower lower right
+			Draw(xc + x, yc + y, c);//lower right right
+			if (p < 0) { 
+				x++;
+				p += 4 * x + 6;
+			}
+			else {
+				x++;
+				y--;
+				p += 4 * (x - y) + 10;
+			}
+		}
+	}
+	
+	private void _drawline(int sx, int ex, int ny, int c)
+	{
+		for (int i = sx; i <= ex; i++)
+			Draw(i, ny, c);
+	}
+	
+	void FillCircle(int xc, int yc, int r, int c)
+	{
+		// Taken from wikipedia
+		int x = 0;
+		int y = r;
+		int p = 3 - 2 * r;
+		if (!r) return;
+
+		while (y >= x)
+		{
+			// Modified to draw scan-lines instead of edges
+			_drawline(xc - x, xc + x, yc - y, c);
+			_drawline(xc - y, xc + y, yc - x, c);
+			_drawline(xc - x, xc + x, yc + y, c);
+			_drawline(xc - y, xc + y, yc + x, c);
+			if (p < 0) { 
+				x++;
+				p += 4 * x + 6;
+			}
+			else {
+				x++;
+				y--;
+				p += 4 * (x - y) + 10;
 			}
 		}
 	}
