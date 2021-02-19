@@ -28,7 +28,7 @@ class PixelGameEngine
 			}
 		}
 		
-		m_FrameTimer.Run(1 / FRAMERATE, this, "OnFrame", null, true);
+		m_FrameTimer.Run(1 / FRAMERATE, this, "_OnFrame", new Param1<float>(GetGame().GetTime()), true);
 	}
 	
 	void ~PixelGameEngine()
@@ -53,14 +53,20 @@ class PixelGameEngine
 		}
 	}
 	
-	void OnFrame()
+	private void _OnFrame(float start_time)
 	{
 		for (int i = 0; i < SCREEN_WIDTH; i++) {
 			for (int j = 0; j < SCREEN_HEIGHT; j++) {
 				Draw(i, j, ARGB(255, 0, 0, 0));	
 			}
 		}
+		
+		float tfactor = (GetGame().GetTime() - start_time) / 1000;
+		OnFrame(tfactor);
 	}
+	
+	void OnFrame(float dt);
+	
 	
 	void Draw(int pixel_x, int pixel_y, int color)
 	{
