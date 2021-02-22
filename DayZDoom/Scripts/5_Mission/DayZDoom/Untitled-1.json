@@ -1,0 +1,23 @@
+  "staticAnomaly": [
+    {
+      "_comment": "Static Electra",
+      "anomalyName": "Electra",
+      "anomalyPosition":[
+        [4479.25, 12.1408, 11095.6]
+    ],
+    "ArtefactsWithoutDetector": {
+        "SpawnChancePercent": 100.0,
+        "SpawnDistance_Min": 2.0,
+        "SpawnDistance_Max": 5.0,
+        "ArtefactsData": [
+            {
+                "ArtefactClassName": "DZRP_Artefact_Gravi",
+                "ArtefactSpawnChancePercent": 100
+            },
+            {
+                "ArtefactClassName": "DZRP_Artefact_StoneFlower",
+                "ArtefactSpawnChancePercent": 100
+            }
+        ]
+    }
+}, 
